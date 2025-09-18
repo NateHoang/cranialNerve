@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cranial Nerve</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+    <style>
+      /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+      /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+      body {
+        font-family: var(
+          --vscode-markdown-font-family,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe WPC',
+          'Segoe UI',
+          'Ubuntu',
+          'Droid Sans',
+          sans-serif
+        );
+        font-size: var(--vscode-markdown-font-size, 14px);
+        padding: 0 26px;
+        line-height: var(--vscode-markdown-line-height, 22px);
+        word-wrap: break-word;
+      }
+
+      #code-csp-warning {
+        position: fixed;
+        top: 0;
+        right: 0;
+        color: white;
+        margin: 16px;
+        text-align: center;
+        font-size: 12px;
+        font-family: sans-serif;
+        background-color: #444444;
+        cursor: pointer;
+        padding: 6px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+
+      #code-csp-warning:hover {
+        text-decoration: none;
+        background-color: #007acc;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      body.scrollBeyondLastLine {
+        margin-bottom: calc(100vh - 22px);
+      }
+
+      body.showEditorSelection .code-line {
+        position: relative;
+      }
+
+      body.showEditorSelection .code-active-line:before,
+      body.showEditorSelection .code-line:hover:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 100%;
+      }
+
+      body.showEditorSelection li.code-active-line:before,
+      body.showEditorSelection li.code-line:hover:before {
+        left: -30px;
+      }
+
+      .vscode-light.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.15);
+      }
+
+      .vscode-light.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.4);
+      }
+
+      .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-dark.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .vscode-dark.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 160, 0, 0.7);
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 160, 0, 1);
+      }
+
+      .vscode-high-contrast.showEditorSelection
+        .code-line
+        .code-line:hover:before {
+        border-left: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a:focus,
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 1px solid -webkit-focus-ring-color;
+        outline-offset: -1px;
+      }
+
+      hr {
+        border: 0;
+        height: 2px;
+        border-bottom: 2px solid;
+      }
+
+      h1 {
+        padding-bottom: 0.3em;
+        line-height: 1.2;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table > thead > tr > th {
+        text-align: left;
+        border-bottom: 1px solid;
+      }
+
+      table > thead > tr > th,
+      table > thead > tr > td,
+      table > tbody > tr > th,
+      table > tbody > tr > td {
+        padding: 5px 10px;
+      }
+
+      table > tbody > tr + tr > td {
+        border-top: 1px solid;
+      }
+
+      blockquote {
+        margin: 0 7px 0 5px;
+        padding: 0 16px 0 10px;
+        border-left-width: 5px;
+        border-left-style: solid;
+      }
+
+      code {
+        font-family: Menlo, Monaco, Consolas, 'Droid Sans Mono', 'Courier New',
+          monospace, 'Droid Sans Fallback';
+        font-size: 1em;
+        line-height: 1.357em;
+      }
+
+      body.wordWrap pre {
+        white-space: pre-wrap;
+      }
+
+      pre:not(.hljs),
+      pre.hljs code > div {
+        padding: 16px;
+        border-radius: 3px;
+        overflow: auto;
+      }
+
+      pre code {
+        color: var(--vscode-editor-foreground);
+        tab-size: 4;
+      }
+
+      /** Theming */
+
+      .vscode-light pre {
+        background-color: rgba(220, 220, 220, 0.4);
+      }
+
+      .vscode-dark pre {
+        background-color: rgba(10, 10, 10, 0.4);
+      }
+
+      .vscode-high-contrast pre {
+        background-color: rgb(0, 0, 0);
+      }
+
+      .vscode-high-contrast h1 {
+        border-color: rgb(0, 0, 0);
+      }
+
+      .vscode-light table > thead > tr > th {
+        border-color: rgba(0, 0, 0, 0.69);
+      }
+
+      .vscode-dark table > thead > tr > th {
+        border-color: rgba(255, 255, 255, 0.69);
+      }
+
+      .vscode-light h1,
+      .vscode-light hr,
+      .vscode-light table > tbody > tr + tr > td {
+        border-color: rgba(0, 0, 0, 0.18);
+      }
+
+      .vscode-dark h1,
+      .vscode-dark hr,
+      .vscode-dark table > tbody > tr + tr > td {
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+    </style>
+
+    <style>
+      /* Tomorrow Theme */
+      /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+      /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+      /* Tomorrow Comment */
+      .hljs-comment,
+      .hljs-quote {
+        color: #8e908c;
+      }
+
+      /* Tomorrow Red */
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-tag,
+      .hljs-name,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-regexp,
+      .hljs-deletion {
+        color: #c82829;
+      }
+
+      /* Tomorrow Orange */
+      .hljs-number,
+      .hljs-built_in,
+      .hljs-builtin-name,
+      .hljs-literal,
+      .hljs-type,
+      .hljs-params,
+      .hljs-meta,
+      .hljs-link {
+        color: #f5871f;
+      }
+
+      /* Tomorrow Yellow */
+      .hljs-attribute {
+        color: #eab700;
+      }
+
+      /* Tomorrow Green */
+      .hljs-string,
+      .hljs-symbol,
+      .hljs-bullet,
+      .hljs-addition {
+        color: #718c00;
+      }
+
+      /* Tomorrow Blue */
+      .hljs-title,
+      .hljs-section {
+        color: #4271ae;
+      }
+
+      /* Tomorrow Purple */
+      .hljs-keyword,
+      .hljs-selector-tag {
+        color: #8959a8;
+      }
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        color: #4d4d4c;
+        padding: 0.5em;
+      }
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+    </style>
+
+    <style>
+      /*
+ * Markdown PDF CSS
+ */
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI',
+          'Ubuntu', 'Droid Sans', sans-serif, 'Meiryo';
+        padding: 0 12px;
+      }
+
+      pre {
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+      }
+
+      pre:not(.hljs) {
+        padding: 23px;
+        line-height: 19px;
+      }
+
+      blockquote {
+        background: rgba(127, 127, 127, 0.1);
+        border-color: rgba(0, 122, 204, 0.5);
+      }
+
+      .emoji {
+        height: 1.4em;
+      }
+
+      code {
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      /* for inline code */
+      :not(pre):not(.hljs) > code {
+        color: #c9ae75; /* Change the old color so it seems less like an error */
+        font-size: inherit;
+      }
+
+      /* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+      .page {
+        page-break-after: always;
+      }
+    </style>
+
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  </head>
+  <body>
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme:
+          document.body.classList.contains('vscode-dark') ||
+          document.body.classList.contains('vscode-high-contrast')
+            ? 'dark'
+            : 'default',
+      });
+    </script>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: right">#</th>
+          <th>Name</th>
+          <th style="text-align: right">Modality (S/M/B)</th>
+          <th>Nuclei</th>
+          <th>Location</th>
+          <th>Exit point (foramen)</th>
+          <th>Innervation (targets)</th>
+          <th>Major motor innervations (specific muscles)</th>
+          <th>Major sensory targets</th>
+          <th>Parasympathetic targets</th>
+          <th>1-line clinical signs</th>
+          <th>Somatic and Brachial Motor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: right">I</td>
+          <td>Olfactory</td>
+          <td style="text-align: right">
+            Sensory (<span style="color: green">Special</span>)
+          </td>
+          <td>
+            <span style="color: green">Olfactory bulb (cerebral origin) </span>
+          </td>
+          <td>Cerebrum</td>
+          <td>Cribriform plate</td>
+          <td>
+            Olfactory epithelium → olfactory bulb → primary olfactory cortex
+          </td>
+          <td>—</td>
+          <td>Smell (olfactory mucosa)</td>
+          <td>—</td>
+          <td>Anosmia (loss of smell)</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">II</td>
+          <td>Optic</td>
+          <td style="text-align: right">
+            Sensory (<span style="color: green">Special</span>)
+          </td>
+          <td>
+            <br /><span style="color: green"
+              ><li>Lateral geniculate nucleus (hypothalamus)</li></span
+            ><span style="color: green"
+              ><li>Pretectal nucleus (midbrain)</li></span
+            ><span style="color: green"
+              ><li>Suprachiasmatic nucleus (thalamus)</li></span
+            >
+          </td>
+          <td>Cerebrum</td>
+          <td>Optic canal</td>
+          <td>Retina → lateral geniculate nucleus / visual cortex</td>
+          <td>—</td>
+          <td>
+            Vision (retina → LGN; pretectal &amp; suprachiasmatic pathways)
+          </td>
+          <td>—</td>
+          <td>
+            Visual field defects (e.g., monocular blindness, bitemporal
+            hemianopsia, homonymous hemianopsia)
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">III</td>
+          <td>Oculomotor</td>
+          <td style="text-align: right">Motor (parasympathetic)</td>
+          <td>
+            <br /><span style="color: red"><li>Oculomotor nucleus</li></span
+            ><span style="color: #d58667"
+              ><li>Edinger-Westphal nucleus</li></span
+            >
+          </td>
+          <td>Ventral Midbrain</td>
+          <td>Superior orbital fissure</td>
+          <td>
+            Extraocular muscles (most) and levator palpebrae; sphincter pupillae
+            &amp; ciliary muscle (parasym.)
+          </td>
+          <td>
+            <b>Superior Branch:</b>
+            <li>Levator palpebrae superioris</li>
+            <li>Superior rectus</li>
+            <b>Inferior Branch</b>
+            <li>Inferior rectus</li>
+            <li>Medial rectus</li>
+            <li>Inferior oblique</li>
+          </td>
+          <td>Minimal proprioceptive fibers</td>
+          <td>Via ciliary ganglion → sphincter pupillae → Ciliary muscle</td>
+          <td>
+            Ptosis, &quot;down and out&quot; eye; pupillary dilation and loss of
+            accommodation if parasympathetic affected
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">IV</td>
+          <td>Trochlear</td>
+          <td style="text-align: right">Motor</td>
+          <td><span style="color: red">Trochlear nucleus</span></td>
+          <td>Dorsal Midbrain</td>
+          <td>Superior orbital fissure</td>
+          <td>Superior oblique muscle</td>
+          <td>Superior oblique — depresses &amp; intorts the adducted eye</td>
+          <td>Minimal proprioceptive role</td>
+          <td>—</td>
+          <td>
+            Vertical diplopia; difficulty looking down when eye is adducted
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">V</td>
+          <td>Trigeminal</td>
+          <td style="text-align: right">Both</td>
+          <td>
+            <br /><span style="color: orange"
+              ><li>Trigeminal Motor Nucleus</li></span
+            ><span style="color: blue"
+              ><li>Trigeminal Mesencephalic Nucleus (Proprioception)</li></span
+            ><span style="color: blue"
+              ><li>Trigeminal Principal Nucleus (Tactile)</li></span
+            ><span style="color: blue"
+              ><li>Trigeminal Spinal Nucleus (Pain and Temperature)</li></span
+            >
+          </td>
+          <td>Pons</td>
+          <td>
+            <li>V1 (Ophthalmic): superior orbital fissure;</li>
+            <li>V2 (Maxillary): foramen rotundum;</li>
+            <li>V3 (Mandibular): foramen ovale</li>
+          </td>
+          <td>
+            <li>Temporal</li>
+            <li>Zygomatic</li>
+            <li>Buccal</li>
+            <li>Mandibular</li>
+            <li>Cervical</li>
+          </td>
+          <td>
+            <li>Muscles of mastication</li>
+            <li>Tensor Veli Palatini</li>
+            <li>Tensor Tympani</li>
+            <li>Anterior belly of digastric</li>
+          </td>
+          <td>
+            Loss of facial sensation; loss of corneal reflex (afferent);
+            weakness of mastication (jaw deviation toward lesion)
+          </td>
+          <td>
+            <li>Muscles of mastication</li>
+            <li>Tensor Veli Palatini</li>
+            <li>Tensor Tympani</li>
+            <li>Anterior belly of digastric</li>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">VI</td>
+          <td>Abducens</td>
+          <td style="text-align: right">Motor</td>
+          <td><span style="color: red">Abducens nucleus</span></td>
+          <td>Pontomedullary Junction</td>
+          <td>Superior orbital fissure</td>
+          <td>Lateral rectus muscle</td>
+          <td>Lateral rectus</td>
+          <td>Minimal proprioceptive role</td>
+          <td>—</td>
+          <td>
+            Medial deviation of eye; inability to abduct eye on affected side
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">VII</td>
+          <td>Facial</td>
+          <td style="text-align: right">Both (Parasympathetic and Special)</td>
+          <td>
+            <br /><span style="color: orange"
+              ><li>Facial Motor Nucleus</li></span
+            ><span style="color: #d56867"
+              ><li>Superior and Inferior Salivatory nuclei</li></span
+            ><span style="color: blue"><li>Trigeminal Nuclei</li></span
+            ><span style="color: green"
+              ><li>Nucleus of Solitary Tract</li></span
+            >
+          </td>
+          <td>Pontomedullary Junction</td>
+          <td>
+            Internal acoustic meatus → facial canal → stylomastoid foramen
+          </td>
+          <td>
+            Muscles of facial expression; stapedius; posterior digastric;
+            stylohyoid; lacrimal, submandibular, sublingual glands; taste
+            anterior 2/3 tongue
+          </td>
+          <td>
+            Muscles of facial expression (temporal, zygomatic, buccal,
+            mandibular, cervical branches), stapedius, stylohyoid, posterior
+            digastric
+          </td>
+          <td>Small area of external ear; taste from anterior 2/3 of tongue</td>
+          <td>
+            Lacrimation (greater petrosal → pterygopalatine GN); salivation
+            (chorda tympani → submandibular GN); glands of oral/nasal cavities
+            &amp; paranasal sinuses
+          </td>
+          <td>
+            Ipsilateral facial paralysis (LMN); hyperacusis if stapedius
+            affected; loss of taste anterior 2/3
+          </td>
+          <td>
+            Muscles of facial expression, stapedius, stylohyoid, posterior belly
+            of digastric
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right">VIII</td>
+          <td>Vestibulocochlear</td>
+          <td style="text-align: right">
+            Sensory (<span style="color: green">Special</span>)
+          </td>
+          <td>
+            <br /><span style="color: green"
+              ><li>Vestibular Nucleus</li>
+              <span style="color: green"><li>Cochlear Nucleus</li></span></span
+            >
+          </td>
+          <td>Pontomedullary Junction</td>
+          <td>Internal acoustic meatus</td>
+          <td>Cochlea and vestibular apparatus → brainstem nuclei</td>
+          <td>—</td>
+          <td>Hearing (cochlea) and balance (vestibular apparatus)</td>
+          <td>—</td>
+          <td>
+            Sensorineural hearing loss, vertigo, nystagmus, balance disturbances
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">IX</td>
+          <td>Glossopharyngeal</td>
+          <td style="text-align: right">
+            Both (Parasympathetic and <span style="color: green">Special</span>)
+          </td>
+          <td>
+            <br /><span style="color: orange"><li>Nucleus Ambiguus</li></span
+            ><span style="color: #d56867"
+              ><li>Inferior Salivatory Nucleus</li></span
+            ><span style="color: blue"><li>Trigeminal Nuclei</li></span
+            ><span style="color: purple"
+              ><li>Nucleus of Solitary Tract</li></span
+            ><span style="color: green">*</span>
+          </td>
+          <td>Medulla</td>
+          <td>Jugular foramen</td>
+          <td>
+            Stylopharyngeus; carotid body &amp; sinus sensory; posterior 1/3
+            tongue; parotid gland (parasympathetic)
+          </td>
+          <td>Stylopharyngeus (elevates pharynx)</td>
+          <td>
+            Taste &amp; general sensation from posterior 1/3 tongue; oropharynx;
+            carotid sinus &amp; body
+          </td>
+          <td>
+            Parotid secretion via inferior salivatory nucleus → otic GN →
+            auriculotemporal (V3)
+          </td>
+          <td>
+            Loss of gag reflex (afferent), loss of taste/posterior tongue
+            sensation, impaired carotid sinus reflex
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">X</td>
+          <td>Vagus</td>
+          <td style="text-align: right">Both (Parasympathetic and Special)</td>
+          <td>
+            <br /><span style="color: orange"><li>Nucleus Ambiguus</li></span
+            ><span style="color: #d56867"
+              ><li>Dorsal Motor Nucleus of Vagus Nerve</li></span
+            ><span style="color: blue"><li>Trigeminal Nuclei</li></span
+            ><span style="color: purple"
+              ><li>Nucleus of Solitary Tract</li></span
+            ><span style="color: green">*</span>
+          </td>
+          <td>Medulla</td>
+          <td>
+            Jugular foramen (cranial root) and continues into thorax/abdomen
+          </td>
+          <td>
+            Muscles of larynx &amp; pharynx; heart, lungs, GI tract; taste from
+            epiglottic region
+          </td>
+          <td>
+            Muscles of pharynx &amp; larynx (via nucleus ambiguus); contributes
+            to upper esophagus muscles
+          </td>
+          <td>
+            Sensory from larynx, pharynx, thoracic &amp; abdominal viscera;
+            taste from epiglottic region
+          </td>
+          <td>Thoracic and abdominal viscera</td>
+          <td>
+            Dysphonia, dysphagia, loss of gag reflex (efferent), autonomic
+            dysfunction (HR/GI motility)
+          </td>
+          <td>
+            Pharyngeal muscles except stylopharyngeus; palatal muscles except
+            TVP; laryngeal muscles except cricothyroid
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right">XI</td>
+          <td>Accessory</td>
+          <td style="text-align: right">Motor</td>
+          <td><span style="color: orange">Spinal Accessory Nucleus</span></td>
+          <td>Spinal Cord</td>
+          <td>Enters via foramen magnum and exits via jugular foramen</td>
+          <td>Sternocleidomastoid and trapezius muscles</td>
+          <td>SCM and trapezius — head rotation &amp; shoulder elevation</td>
+          <td>—</td>
+          <td>—</td>
+          <td>
+            Weakness turning head away from lesion; shoulder droop; difficulty
+            elevating shoulder
+          </td>
+          <td>Sternocleidomastoid and trapezius</td>
+        </tr>
+        <tr>
+          <td style="text-align: right">XII</td>
+          <td>Hypoglossal</td>
+          <td style="text-align: right">Motor</td>
+          <td><span style="color: red">Hypoglossal Nucleus</span></td>
+          <td>Medulla</td>
+          <td>Hypoglossal canal</td>
+          <td>Intrinsic &amp; extrinsic muscles of the tongue</td>
+          <td>
+            Genioglossus, hyoglossus, styloglossus, intrinsic tongue muscles
+          </td>
+          <td>Minimal proprioceptive fibers</td>
+          <td>—</td>
+          <td>
+            Ipsilateral tongue weakness; tongue deviates toward side of lesion
+            on protrusion
+          </td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Color</th>
+          <th>Cranial Nerves</th>
+          <th>Number Grouping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Somatic Motor</td>
+          <td><span style="color: red">■</span> Red</td>
+          <td>
+            <li>3 - Oculomotor</li>
+            <li>4 - Trochlear</li>
+            <li>6- Abducens</li>
+            <li>12 - Hypoglossal</li>
+          </td>
+          <td>3-4-6-12</td>
+        </tr>
+        <tr>
+          <td>Brachial Motor</td>
+          <td><span style="color: orange">■</span> Orange</td>
+          <td>
+            <li>5 - Trigeminal</li>
+            <li>7 - Facial</li>
+            <li>9 - Glassopharyngeal</li>
+            <li>10 - Vagus</li>
+            <li>11 - Accessory</li>
+          </td>
+          <td>5-7-91011</td>
+        </tr>
+        <tr>
+          <td>Special Sensory</td>
+          <td><span style="color: green">■</span> Green</td>
+          <td>
+            <li>1 - Olfactory</li>
+            <li>2 - Optics</li>
+            <li>7 - Facial</li>
+            <li>8 - Vestibulocochlear</li>
+            <li>9 - Glassopharyngeal</li>
+            <li>10 - Vagus</li>
+          </td>
+          <td>12-78910</td>
+        </tr>
+        <tr>
+          <td>Visceral Motor</td>
+          <td><span style="color: #d58667">■</span> Pink</td>
+          <td>
+            <li>3 - Oculomotor</li>
+            <li>7 - Facial</li>
+            <li>9 - Glassopharyngeal</li>
+            <li>10 - Vagus</li>
+          </td>
+          <td>3-7-910</td>
+        </tr>
+        <tr>
+          <td>Somatic Sensory</td>
+          <td><span style="color: blue">■</span> Blue</td>
+          <td>
+            <li>5 - Trigeminal</li>
+            <li>7 - Facial</li>
+            <li>9 - Glassopharyngeal</li>
+            <li>10 - Vagus</li>
+          </td>
+          <td>5-7-910</td>
+        </tr>
+        <tr>
+          <td>Visceral Sensory</td>
+          <td><span style="color: purple">■</span> Purple</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Cranial Nerve pnuemonic pharyngeal arches: Two Fat Girls Shit Rocks</p>
+  </body>
+</html>
